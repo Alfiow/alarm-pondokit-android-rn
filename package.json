@@ -8,20 +8,12 @@
   },
   "dependencies": {
     "react": "16.0.0-beta.5",
-<<<<<<< HEAD
-    "react-native": "0.49.3",
-    "redux-thunk": "^2.2.0"
-=======
     "react-native": "0.49.3"
->>>>>>> aeb56386b84110e75a022cb2a228bc780122287b
   },
   "devDependencies": {
     "babel-jest": "21.2.0",
     "babel-preset-react-native": "4.0.0",
-<<<<<<< HEAD
-=======
     "eslint-config-rallycoding": "^3.2.0",
->>>>>>> aeb56386b84110e75a022cb2a228bc780122287b
     "jest": "21.2.1",
     "react-test-renderer": "16.0.0-beta.5"
   },
