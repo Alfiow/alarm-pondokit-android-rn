@@ -23,15 +23,18 @@ const Field = ({
 
 const styles ={
     containerStyle: {
-        flex: 1,
         flexDirection: 'column',
+        alignItems: 'center',
     },
     labelStyle: {
-        fontSize: 16,
+        fontSize: 20,
     },
     textInputStyle: {
-        fontSize: 16,
+        fontSize: 20,
         lineHeight: 23,
+        width: 150,
+        borderWidth: 1,
+        borderRadius: 5,
     }
 }
 

@@ -5,6 +5,11 @@ import { Field, Button } from './component';
 import { listAdd, listCreate } from './actions';
 
 class AddForm extends Component {
+    state = {
+        date: '',
+        date2: ''
+    }
+
     onButtonPress() {
         const { label } = this.props;
 
@@ -12,7 +17,7 @@ class AddForm extends Component {
     }
     
     render() {
-        const { container } = styles;
+        const { container, styleButton, pickerStyle, wrapTextInput } = styles;
         return (
             <View style={container}>
                 <Field 
@@ -36,9 +41,24 @@ class AddForm extends Component {
 const styles = {
     container: {
         flex: 1,
-        flexDirection: 'column',
+        // flexDirection: 'space-around',
         justifyContent: 'center',
         alignItems: 'center',
+    },
+    wrapTextInput: {
+       borderWidth: 1,
+    },
+    styleButton: {
+        borderRadius: 5,
+        padding: 3,
+        alignItems: 'center',
+        height: 30,
+        width: 100,
+        margin: 10
+    },
+    pickerStyle: {
+        width: 80,
+        height: 50,
     },
 };
 
