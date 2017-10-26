@@ -33,11 +33,11 @@ const styles = {
         flexDirection: 'column'
     },
     styleWrapButton: {
-        justifyContent: 'flex-end',
+        position: 'absolute',
         alignItems: 'flex-end',
-        marginRight: 20,
-        marginBottom: 50,
-        flex: 1,
+        bottom: 0,
+        left: 0,
+        right: 0
     },
     styleButton: {
         borderColor: 'black',

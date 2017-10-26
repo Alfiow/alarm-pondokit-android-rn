@@ -5,15 +5,10 @@ import { Field, Button } from './component';
 import { listAdd, listCreate } from './actions';
 
 class AddForm extends Component {
-    state = {
-        date: '',
-        date2: ''
-    }
-
     onButtonPress() {
-        const { label } = this.props;
+        const { label, hours, minute } = this.props;
 
-        this.props.listCreate();
+        this.props.listCreate({ label, hours: hours || '1', minute: minute || '2' });
     }
     
     render() {
@@ -32,8 +27,8 @@ class AddForm extends Component {
 
                 <View style={wrapPicker}>
                     <Picker
-                    selectedValue={this.state.date}
-                    onValueChange={date => this.setState({ date })}
+                    selectedValue={this.props.hours}
+                    onValueChange={value => this.props.listAdd({ prop: 'hours', value })}
                     style={pickerStyle}
                     >
                         <Picker.Item label="1" value="1" />
@@ -42,8 +37,8 @@ class AddForm extends Component {
                         <Picker.Item label="4" value="4" />
                     </Picker>
                     <Picker
-                    selectedValue={this.state.date2}
-                    onValueChange={date2 => this.setState({ date2 })}
+                    selectedValue={this.props.minute}
+                    onValueChange={value => this.props.listAdd({ prop: 'minute', value })}
                     style={pickerStyle}
                     >
                         <Picker.Item label="1" value="1" />
@@ -92,9 +87,9 @@ const styles = {
 };
 
 const mapStateToProps = (state) => {
-    const { label } = state.addForm;
+    const { label, hours, minute } = state.addForm;
 
-    return { label };  
+    return { label, hours, minute };  
 }
 
 export default connect(mapStateToProps, { listAdd, listCreate })(AddForm);

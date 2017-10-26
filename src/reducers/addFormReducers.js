@@ -1,7 +1,9 @@
 import { LIST_ADD, LIST_CREATE } from '../actions/types';
 
 const INITIAL_STATE = {
-  label: ''
+  label: '',
+  hours: '',
+  minute: ''
 };
 
 export default (state = INITIAL_STATE, action) => {

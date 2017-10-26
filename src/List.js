@@ -1,25 +1,58 @@
-import React from 'react';
-import { View, Text } from 'react-native';
+import _ from 'lodash';
+import React, { Component } from 'react';
+import { View, Text, ListView } from 'react-native';
+import { connect } from 'react-redux';
+import { listFetch } from './actions';
+import ListItem from './ListItem';
+import Main from './Main';
 
-const List = () => {
-    const { story, storyTextt } = styles;
-    return (
-        <View style={story}>
-            <Text style={storyText}>
-                List
-            </Text>
-        </View>
-    );
+class List extends Component {
+    componentWillMount() {
+        this.props.listFetch();
+
+        this.createDataSource(this.props)
+    }
+
+    componentWillReceiveProps(nextProps){
+        this.createDataSource(nextProps);
+    }
+
+    createDataSource({ admin }) {
+        const ds = new ListView.DataSource({
+            rowHasChanged: (r1, r2) => r1 !== r2
+        });
+
+        this.dataSource = ds.cloneWithRows(admin);
+    }
+
+    renderRow(adm) {
+        return <ListItem adm={adm} />
+    }
+        render(){
+            const { story, storyTextt } = styles;
+            return (
+                <View style={story}>
+                    <ListView
+                        enableEmptySections
+                        dataSource={this.dataSource}
+                        renderRow={this.renderRow}
+                    />
+
+                    <View>
+                        <Main />
+                    </View>
+                </View>
+        );
+    }
 }
 
 const styles = {
     story: {
-        position: 'relative',
-        padding: 20,
-        paddingRight: 100,
+        flex: 1,
+        padding: 10,
+        paddingRight: 10,
         borderBottomWidth: 2,
         borderBottomColor: 'black',
-        flexDirection: 'column'
     },
     storyText: {
         paddingLeft: 20,
@@ -29,4 +62,12 @@ const styles = {
     },
 };
 
-export default List;
+const mapStateToProps = state => {
+    const admin = _.map(state.admin, (val) => {
+        return {...val};
+    })
+
+    return { admin };
+}
+
+export default connect(mapStateToProps, {listFetch})(List);
